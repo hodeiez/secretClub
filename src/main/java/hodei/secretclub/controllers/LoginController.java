@@ -42,7 +42,7 @@ public class LoginController {
     }
 
     @RequestMapping(value="/registration",method=RequestMethod.POST)
-    public ModelAndView createUser(@Valid User user, BindingResult bindinResult){
+    public ModelAndView createNewUser(@Valid User user, BindingResult bindinResult){
         ModelAndView modelAndView=new ModelAndView();
         User userExists=userService.findUserByUserName(user.getUserName());
         if(userExists !=null){
