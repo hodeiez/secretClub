@@ -1,5 +1,6 @@
 package hodei.secretclub.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +12,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -52,6 +54,19 @@ public class User {
     @ManyToMany(cascade=CascadeType.MERGE)
     @JoinTable(name="user_role",joinColumns=@JoinColumn(name="user_id"),inverseJoinColumns=@JoinColumn(name="role_id"))
     private Set<Role> roles;
+
+    @OneToMany(mappedBy="user")
+    @JsonManagedReference
+    private List<Post> posts;
+
+
+    @OneToMany(mappedBy="user")
+    @JsonManagedReference
+    private List<Message> message;
+
+
+
+
 
 
 
