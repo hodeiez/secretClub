@@ -38,7 +38,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers(loginPage).permitAll()
                 .antMatchers("/registration").permitAll()
-                .antMatchers("/member/**").hasAuthority("ADMIN").anyRequest()
+                .antMatchers("/member/**").hasAuthority("MEMBER").anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage(loginPage).loginPage("/").failureUrl("/login?error=true")
                 .defaultSuccessUrl("/member/home")
