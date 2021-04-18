@@ -29,6 +29,7 @@ public class Message {
     private int id;
     @Column(name="message_text")
     @NotEmpty(message="write something")
+    @Lob
     private String messageText;
     @ManyToOne
     @JoinColumn(name="FKpost",referencedColumnName = "post_id")

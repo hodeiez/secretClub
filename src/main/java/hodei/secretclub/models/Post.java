@@ -35,10 +35,10 @@ public class Post {
     private String postTitle;
     @Column(name="post_text")
     @NotEmpty(message="write something")
+    @Lob
     private String postText;
     @OneToMany(mappedBy="post")
     @JsonManagedReference
-    @Column(name="messages")
     private List<Message> message;
 
     @ManyToOne
