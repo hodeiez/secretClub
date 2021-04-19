@@ -26,10 +26,22 @@
       </div>
       <div class="panel-body">
 
+        <form th:action="" method="POST" class="form-signin">
+          <input type="text" id="post_title" name="post_title" placeholder="Post postTitle" class="form-control"><br/>
+          <textarea type="text" th:placeholder="your secret" id="post_text" name="post_text" class="form-control"></textarea> <br/>
+
+          <div align="center" th:if="${param.error}">
+            <p style="font-size:20px;color:red;">Invalid values</p>
+
+          </div>
+          <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Post" type="Submit" th:text="Publish"></button>
+
+        </form>
 
       </div>
       <h2 class="admin-message-text text-center" th:utext="${adminMessage}"></h2>
     </div>
+
   </div>
 </div>
 </body>
