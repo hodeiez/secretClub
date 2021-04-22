@@ -42,7 +42,7 @@ public class Post {
     private List<Message> message;
 
     @ManyToOne
-    @JoinColumn(name="FKuser_id",referencedColumnName = "user_id")
+    @JoinColumn (name="FKuser_id",referencedColumnName = "user_id")
     @JsonBackReference
     private User user;
 

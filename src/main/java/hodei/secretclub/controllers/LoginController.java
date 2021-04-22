@@ -88,6 +88,7 @@ public class LoginController {
         User user =userService.findUserByUserName(auth.getName());
        //set the logged user as posts user
         post.setUser(user);
+        System.out.println(user.toString());
         //set the post in the form
         modelAndView.addObject("post",post);
 
