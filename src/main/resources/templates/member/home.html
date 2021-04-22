@@ -26,6 +26,12 @@
       </div>
       <div class="panel-body">
 
+
+  <div th:each="post:${postList}">
+    <h1 th:text="${post.postTitle}"></h1>
+    <h2 th:text="${post.postText}"></h2>
+    <h3 th:text="${post.getUser().getUserName()}"></h3>
+</div>
         <form th:action="@{/postpost}" th:object="${post}" method="POST" class="form-signin">
           <input type="text" id="post_title" th:field="*{postTitle}" name="post_title" placeholder="Post postTitle" class="form-control"><br/>
           <textarea type="text" th:field="*{postText}" placeholder="your secret" id="post_text" name="post_text" class="form-control"></textarea> <br/>

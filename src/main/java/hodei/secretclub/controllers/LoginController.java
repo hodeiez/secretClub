@@ -4,6 +4,7 @@ import hodei.secretclub.models.Post;
 import hodei.secretclub.models.User;
 import hodei.secretclub.repositories.PostRepository;
 import hodei.secretclub.services.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by Hodei Eceiza
@@ -25,6 +27,7 @@ import javax.validation.Valid;
  * Project: secretClub
  * Copyright: MIT
  */
+@Slf4j
 @Controller
 public class LoginController {
     @Autowired
@@ -41,9 +44,11 @@ public class LoginController {
     }
     //need to do a get request to get values, and then post it!!!!
     @PostMapping("/postpost")
-    public ModelAndView postPost(@ModelAttribute(value="post") Post post){
-
+    public ModelAndView postPost(@ModelAttribute(value="post") @Valid Post post){
+        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+        User user =userService.findUserByUserName(auth.getName());
         ModelAndView mv=new ModelAndView();
+        post.setUser(user);
        mv.addObject("post",post);
         postRepository.save(post);
         mv.setViewName("member/home");
@@ -86,10 +91,11 @@ public class LoginController {
         ModelAndView modelAndView=new ModelAndView();
         Authentication auth= SecurityContextHolder.getContext().getAuthentication();
         User user =userService.findUserByUserName(auth.getName());
-       //set the logged user as posts user
-        post.setUser(user);
-        System.out.println(user.toString());
+
+        //get all the posts
+        List<Post> postList= postRepository.findAll();
         //set the post in the form
+        modelAndView.addObject("postList",postList);
         modelAndView.addObject("post",post);
 
         modelAndView.addObject("userName", "Welcome" + user.getUserName() + "\n"+ "we know you are " + user.getName() + " and your email is " + user.getEmail());
