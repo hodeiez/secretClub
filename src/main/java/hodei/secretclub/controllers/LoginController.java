@@ -52,6 +52,7 @@ public class LoginController {
        mv.addObject("post",post);
         postRepository.save(post);
         mv.setViewName("member/home");
+
         return mv;
 
     }
@@ -98,7 +99,7 @@ public class LoginController {
         modelAndView.addObject("postList",postList);
         modelAndView.addObject("post",post);
 
-        modelAndView.addObject("userName", "Welcome" + user.getUserName() + "\n"+ "we know you are " + user.getName() + " and your email is " + user.getEmail());
+        modelAndView.addObject("userName", "Welcome " + user.getUserName() + "\n"+ " we know you are " + user.getName() + " and your email is " + user.getEmail());
         modelAndView.addObject("adminMessage","Only the members can be here");
         modelAndView.setViewName("member/home");
         return modelAndView;
