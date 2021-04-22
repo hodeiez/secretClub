@@ -31,10 +31,10 @@ public class Post {
     @Column(name="post_id")
     private int id;
     @Column(name="post_title")
-    @NotEmpty(message="write a title")
+   // @NotEmpty(message="write a title")
     private String postTitle;
     @Column(name="post_text")
-    @NotEmpty(message="write something")
+   // @NotEmpty(message="write something")
     @Lob
     private String postText;
     @OneToMany(mappedBy="post")
