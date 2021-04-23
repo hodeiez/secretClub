@@ -32,7 +32,7 @@
 
 
         <form th:action="@{/postpost}" th:object="${post}" method="POST" class="form-signin">
-          <input type="text" id="post_title" th:field="*{postTitle}" name="post_title" placeholder="Post postTitle" class="form-control"><br/>
+          <input type="text" id="post_title" th:field="*{postTitle}" name="post_title" placeholder="Your secret title" class="form-control"><br/>
           <textarea type="text" th:field="*{postText}" placeholder="your secret" id="post_text" name="post_text" class="form-control"></textarea> <br/>
 
           <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Post" type="Submit" th:text="Publish"></button>
@@ -47,7 +47,12 @@
   <div class="panel panel-warning" th:each="post:${postList}">
     <div class="panel-heading bg-dark" th:text="${post.postTitle}"></div>
     <div class="panel-body" th:text="${post.postText}"></div>
-    <div class="panel-footer bg-light"th:text="'posted by '+ ${post.getUser().getUserName()}"></div>
+    <div class="panel-footer bg-light"th:text="'posted by '+ ${post.getUser().getUserName()} + ' and created on ' + ${post.getPostCreated()}"></div>
+    <form>
+      <textarea class="form-control" type="text" placeholder="comment this"></textarea><br/>
+      <button class="btn  btn-primary " name="Submit" value="Post" type="Submit" th:text="Publish">Publish</button>
+
+    </form>
   </div>
 </div>
 </body>
