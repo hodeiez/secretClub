@@ -47,7 +47,7 @@
   <div class="panel panel-default" th:each="post:${postList}">
     <div class="panel-heading bg-dark" th:text="${post.postTitle}"></div>
     <div class="panel-body" th:text="${post.postText}"></div>
-    <div class="panel-footer bg-light"th:text="'posted by '+ ${post.getUser().getUserName()}"></div>
+    <div class="panel-footer bg-light"th:text="'posted by '+ ${post.getUser().getUserName()} + ' and created on ' + ${post.getPostCreated()}"></div>
   </div>
 </div>
 </body>

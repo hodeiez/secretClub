@@ -6,10 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,6 +43,10 @@ public class Post {
     @JsonManagedReference
     private List<Message> message;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="post_created")
+    private Date postCreated;
     @ManyToOne
     @JoinColumn (name="FKuser_id",referencedColumnName = "user_id")
     @JsonBackReference

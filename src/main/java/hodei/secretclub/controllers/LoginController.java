@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Hodei Eceiza
@@ -51,9 +54,9 @@ public class LoginController {
         post.setUser(user);
        mv.addObject("post",post);
         postRepository.save(post);
-        mv.setViewName("member/home");
+        mv.setViewName(home().getViewName());
 
-        return mv;
+        return home();
 
     }
     @RequestMapping(value="/registration", method=RequestMethod.GET)
@@ -94,7 +97,8 @@ public class LoginController {
         User user =userService.findUserByUserName(auth.getName());
 
         //get all the posts
-        List<Post> postList= postRepository.findAll();
+        List<Post> postList= postRepository.findAll().stream().sorted(Comparator.comparingInt(Post::getId).reversed()).collect(Collectors.toList());
+
         //set the post in the form
         modelAndView.addObject("postList",postList);
         modelAndView.addObject("post",post);
