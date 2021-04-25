@@ -54,7 +54,7 @@
     <form th:action="@{/postmessage}" th:object="${message}" method="POST" class="form-signin">
 
       <textarea id="message_text" class="form-control" name="message_text" th:field="*{messageText}" type="text" placeholder="comment this"></textarea><br/>
-
+      <input type="hidden" th:text="${post.getId()}"></input>
       <button class="btn btn-primary " name="Submit" value="Message" type="Submit" th:text="Publish">Publish</button>
 
     </form>
