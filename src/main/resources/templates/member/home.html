@@ -15,13 +15,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<form th:action="@{/logout}" method="get">
+  <button class="btn btn-md btn-danger btn-block" name="registration"
+          type="Submit">Logout
+  </button>
+</form>
 <div class="container">
 
-  <form th:action="@{/logout}" method="get">
-    <button class="btn btn-md btn-danger btn-block" name="registration"
-            type="Submit">Logout
-    </button>
-  </form>
+
   <h2 class="admin-message-text text-center" th:utext="${adminMessage}"></h2>
   <div class="panel-group" style="margin-top:40px">
     <div class="panel panel-danger">
@@ -46,12 +47,15 @@
 
   </div>
   <div class="panel panel-default" th:each="post:${postList}">
+
     <div class="panel-heading bg-dark" th:text="${post.postTitle}"></div>
     <div class="panel-body" th:text="${post.postText}"></div>
     <div class="panel-footer bg-light"th:text="'posted by '+ ${post.getUser().getUserName()} + ' and created on ' + ${post.getPostCreated()}"></div>
-    <form>
-      <textarea class="form-control" type="text" placeholder="comment this"></textarea><br/>
-      <button class="btn  btn-primary " name="Submit" value="Post" type="Submit" th:text="Publish">Publish</button>
+    <form th:action="@{/postmessage}" th:object="${message}" method="POST" class="form-signin">
+
+      <textarea id="message_text" class="form-control" name="message_text" th:field="*{messageText}" type="text" placeholder="comment this"></textarea><br/>
+
+      <button class="btn btn-primary " name="Submit" value="Message" type="Submit" th:text="Publish">Publish</button>
 
     </form>
   </div>
