@@ -61,13 +61,14 @@ public class LoginController {
 
     }
     @PostMapping("/postmessage")
-    public ModelAndView postMessage(@ModelAttribute(value="message") @Valid Message message){
+    public ModelAndView postMessage(@ModelAttribute(value="message") @Valid Message message, @RequestParam("postId") Integer postId){
         Authentication auth= SecurityContextHolder.getContext().getAuthentication();
         User user =userService.findUserByUserName(auth.getName());
         ModelAndView mv=new ModelAndView();
         message.setUser(user);
-
+        message.setPost(postRepository.findById(postId).get());
         mv.addObject("message",message);
+
         messageRepository.save(message);
         mv.setViewName(home().getViewName());
 

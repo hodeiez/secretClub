@@ -46,15 +46,19 @@
     </div>
 
   </div>
-  <div class="panel panel-default" th:each="post:${postList}">
+  <div class="panel panel-warning" th:each="post:${postList}">
 
     <div class="panel-heading bg-dark" th:text="${post.postTitle}"></div>
     <div class="panel-body" th:text="${post.postText}"></div>
-    <div class="panel-footer bg-light"th:text="'posted by '+ ${post.getUser().getUserName()} + ' and created on ' + ${post.getPostCreated()}"></div>
-    <form th:action="@{/postmessage}" th:object="${message}" method="POST" class="form-signin">
+    <div class="panel-footer bg-light pb-2"th:text="'posted by '+ ${post.getUser().getUserName()} + ' and created on ' + ${post.getPostCreated()}"></div>
+    <div class="panel panel-default" th:each="message:${post.getMessage()}">
+      <div class="panel-body" th:text="${message.getMessageText()}"></div>
+      <div class="panel-footer"th:text="'commented by '+ ${message.getUser().getUserName()}"></div>
+    </div>
+
+    <form th:action="@{/postmessage(postId=${post.getId})}" th:object="${message}" method="POST" class="form-signin pt-2">
 
       <textarea id="message_text" class="form-control" name="message_text" th:field="*{messageText}" type="text" placeholder="comment this"></textarea><br/>
-      <input type="hidden" th:text="${post.getId()}"></input>
       <button class="btn btn-primary " name="Submit" value="Message" type="Submit" th:text="Publish">Publish</button>
 
     </form>
