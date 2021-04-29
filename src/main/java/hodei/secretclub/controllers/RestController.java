@@ -1,11 +1,14 @@
 package hodei.secretclub.controllers;
 
+import hodei.secretclub.models.Post;
 import hodei.secretclub.models.User;
+import hodei.secretclub.repositories.PostRepository;
 import hodei.secretclub.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -22,8 +25,11 @@ import java.util.List;
 public class RestController {
     @Autowired
     UserRepository userRepository;
-    @GetMapping
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
+    @Autowired
+    PostRepository postRepository;
+    @GetMapping("")
+    @ResponseBody
+    public List<Post> getAllUsers(){
+        return postRepository.findAll();
     }
 }
