@@ -9,5 +9,5 @@ the project:<br>
 3.-The most commented post will be published in a public page. <br>
 
 **PROJECT STATUS**<br>
-An user can register, log in (but still cames some errors), can post in the member site and can see other members posts.<br>
-**to implement:** validation for posts, error message fix, write comments into posts, show  a home page and show the most commented post
+An user can register, log in (but still cames some errors), can post in the member site, can see other members posts,can write comments for posts.<br>
+**to implement:** validation for posts, error message fix, ,show the most commented post at home page
