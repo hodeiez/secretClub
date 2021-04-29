@@ -1,5 +1,8 @@
 body{
 
-    background-color: red;
-    color:green;
+    background-color: #e0d8d8;
+
+}
+.nice-color {
+    background-color: #85a1c9 !important;
 }
