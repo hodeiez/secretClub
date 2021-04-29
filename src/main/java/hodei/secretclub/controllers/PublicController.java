@@ -19,6 +19,6 @@ public class PublicController {
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.setViewName("publicHome");
         return modelAndView;
-
+//checkin errors
     }
 }
