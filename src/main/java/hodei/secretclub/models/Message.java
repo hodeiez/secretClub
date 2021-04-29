@@ -27,9 +27,9 @@ public class Message {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="message_id")
     private int id;
-    @Column(name="message_text")
+    @Column(name="message_text",columnDefinition="TEXT")
     @NotEmpty(message="write something")
-    @Lob
+    //@Lob
     private String messageText;
     @ManyToOne
     @JoinColumn(name="FKpost",referencedColumnName = "post_id")
