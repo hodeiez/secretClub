@@ -18,11 +18,16 @@
   <link rel="stylesheet" type="text/css" th:href="@{../css/home.css}"/>
 </head>
 <body>
-<form th:action="@{/logout}" method="get">
+<div class="row">
+<form th:action="@{/logout}" method="get" class="col-6">
   <button class="btn btn-md btn-danger btn-block" name="registration"
           type="Submit">Logout
   </button>
 </form>
+<form th:action="@{/}" method="get" class="col-6">
+    <button class="btn btn-md btn-success btn-block" type="Submit">Home page</button>
+</form>
+</div>
 <div class="container">
 
 
@@ -63,7 +68,7 @@
 
     </div>
 
-    <form th:action="@{/postmessage(postId=${post.getId})}" th:object="${message}" method="POST" class="form-signin mt-2 mb-2 p-2 nice-color rounded">
+    <form th:action="@{/postmessage(postId=${post.getId})}" th:object="${message}" method="POST" class="form-signin m-auto p-2 nice-color w-50 rounded">
 
       <textarea id="message_text" class="form-control" name="message_text" th:field="*{messageText}" type="text" placeholder="comment this"></textarea><br/>
       <button class="btn btn-primary mt-1" name="Submit" value="Message" type="Submit" th:text="Comment">Comment</button>

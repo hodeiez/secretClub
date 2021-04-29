@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Hodei Eceiza
@@ -19,7 +21,7 @@ import java.util.List;
  * Project: secretClub
  * Copyright: MIT
  */
-@CrossOrigin
+//@CrossOrigin
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/access")
 public class RestController {
@@ -27,7 +29,9 @@ public class RestController {
     PostRepository postRepository;
     @GetMapping("")
     @ResponseBody
-    public List<Post> getAllUsers(){
-        return postRepository.findAll();
+    public Post getPostMostCommented(){
+        List<Post> postList=postRepository.findAll();
+      Post post=postList.stream().max(Comparator.comparingInt(p->p.getMessage().size())).get();
+        return post;
     }
 }

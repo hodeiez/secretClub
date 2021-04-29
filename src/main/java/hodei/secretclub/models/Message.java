@@ -29,7 +29,7 @@ public class Message {
     private int id;
     @Column(name="message_text",columnDefinition="TEXT")
     @NotEmpty(message="write something")
-    //@Lob
+    //@Lob (heroku postgres doesn't like lob)
     private String messageText;
     @ManyToOne
     @JoinColumn(name="FKpost",referencedColumnName = "post_id")

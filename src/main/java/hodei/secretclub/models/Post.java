@@ -37,7 +37,7 @@ public class Post {
     private String postTitle;
     @Column(name="post_text",columnDefinition="TEXT")
     //@NotEmpty(message="write something")
-    //@Lob
+   // @Lob
     private String postText;
     @OneToMany(mappedBy="post")
     @JsonManagedReference
