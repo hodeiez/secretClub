@@ -24,8 +24,6 @@ import java.util.List;
 @RequestMapping("/access")
 public class RestController {
     @Autowired
-    UserRepository userRepository;
-    @Autowired
     PostRepository postRepository;
     @GetMapping("")
     @ResponseBody
