@@ -18,8 +18,8 @@
   <link rel="stylesheet" type="text/css" href="css/home.css"/>
 </head>
 <body>
-<form th:action="@{/login}" method="get">
-  <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
+<form th:action="@{/login}" method="get" class="text-center">
+  <button class="btn btn-md btn-warning " type="Submit">Go To Login Page</button>
 </form>
 <div class="container">
 
@@ -33,9 +33,10 @@
 </div>
 <h1 class="text-center mt-5 mb-5">THE MOST COMMENTED POST</h1>
 <div class="container">
-<div th:action="@{/access}" class="card">
-  <div id="post-title" class="card-header" >header</div>
-  <div id="post-text" class="card-body">the text</div>
+<div th:object="${mostcommented}"  class="card">
+  <div id="post-title" th:text="${mostcommented.getPostTitle()}" class="card-header nice-color" >header</div>
+  <div id="post-text" th:text="${mostcommented.getPostText()}"class="card-body ">the text</div>
+  <div id="post-created" th:text="'created on ' + ${mostcommented.getPostCreated()}"class="card-footer">the text</div>
 </div>
 </div>
 </body>

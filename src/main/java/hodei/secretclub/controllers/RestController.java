@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * Project: secretClub
  * Copyright: MIT
  */
-@CrossOrigin
+//@CrossOrigin
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/access")
 public class RestController {
