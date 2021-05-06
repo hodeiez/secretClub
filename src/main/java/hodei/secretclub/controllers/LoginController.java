@@ -119,7 +119,7 @@ public class LoginController {
         modelAndView.addObject("postList",postList);
         modelAndView.addObject("post",post);
         modelAndView.addObject("message",message);
-        modelAndView.addObject("userName", "Welcome " + user.getUserName() + "\n"+ " we know you are " + user.getName() + " and your email is " + user.getEmail());
+        modelAndView.addObject("userName", "Welcome " + user.getUserName() + "\n"+ " we know you are " + user.getName() + " and your email is " + user.getEmail() +". Post here your secret");
         modelAndView.addObject("adminMessage","Only the members can be here");
         modelAndView.setViewName("member/home");
         return modelAndView;

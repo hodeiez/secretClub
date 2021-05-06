@@ -18,14 +18,15 @@
   <link rel="stylesheet" type="text/css" th:href="@{../css/home.css}"/>
 </head>
 <body>
-<div class="row">
-<form th:action="@{/logout}" method="get" class="col-6">
-  <button class="btn btn-md btn-danger btn-block" name="registration"
+<div class="row sticky-top bg-light p-2 shadow">
+<form th:action="@{/logout}" method="get" class="m-auto col col-md-4">
+  <button class="btn btn-md btn-secondary text-white btn-block" name="registration"
           type="Submit">Logout
   </button>
 </form>
-<form th:action="@{/}" method="get" class="col-6">
-    <button class="btn btn-md btn-success btn-block" type="Submit">Home page</button>
+    <h1 class="col-md-4  text-center">THE SECRET CLUB</h1>
+<form th:action="@{/}" method="get" class="m-auto col-md-4">
+    <button class="btn btn-md btn-warning  text-white btn-block" type="Submit">Home page</button>
 </form>
 </div>
 <div class="container">
@@ -35,10 +36,7 @@
   <div class="card mb-4 rounded" style="margin-top:40px">
     <div class="card-header">
 
-        <span th:utext="${userName}"></span>
-      </div>
-      <div class="panel-body">
-
+        <div class="text-center" th:utext="${userName}"></div>
 
       <div class="card-body">
         <form th:action="@{/postpost}" th:object="${post}" method="POST" class="form-signin">
@@ -57,10 +55,14 @@
   <h1 class="mt-3 mb-3 text-center">POSTS</h1>
   <div class="w-100 m-auto" th:each="post:${postList}">
 <div class="card mt-3 w-100 mb-2 shadow">
-    <div class="card-header bg-danger text-white" th:text="${post.postTitle}">The title</div>
+    <div class="card-header bg-info text-white pt-1" th:text="${post.postTitle}">The title</div>
     <div class="card-body" th:text="${post.postText}">this is a text fdsafsdfsafsafsdafasdfsafsaf</div>
-    <div class="card-footer pb-1"th:text="'posted by '+ ${post.getUser().getUserName()} + ' and created on ' + ${post.getPostCreated()}">created blalbbal babal</div>
+    <div class="card-footer pb-1">
+        <p class="col" th:text="'posted by '+ ${post.getUser().getUserName()} + ' and created on ' + ${post.getPostCreated()}">created blalbbal babal</p>
+        <a class="col float-right" data-toggle="collapse" href="" th:attr="data-target='#collapsed'+${post.getPostCreated().toString().replaceAll('[^0-9]','').trim()}" role="button" aria-expanded="false" aria-controls="collapsed">show comments and comment </a>
+    </div>
 </div>
+      <div class="collapse" th:id="'collapsed'+${post.getPostCreated().toString().replaceAll('[^0-9]','').trim()}">
     <div class="card mt-1 ml-5  " th:each="message:${post.getMessage()}">
 
       <div class="card-body " th:text="${message.getMessageText()}">this is the main text</div>
@@ -74,6 +76,7 @@
       <button class="btn btn-primary mt-1" name="Submit" value="Message" type="Submit" th:text="Comment">Comment</button>
 
     </form>
+      </div>
   </div>
 </div>
 </body>
