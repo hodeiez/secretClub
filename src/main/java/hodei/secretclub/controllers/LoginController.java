@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Collections;
 import java.util.Comparator;
@@ -120,8 +121,16 @@ public class LoginController {
         modelAndView.addObject("post",post);
         modelAndView.addObject("message",message);
         modelAndView.addObject("userName", "Welcome " + user.getUserName() + "\n"+ " we know you are " + user.getName() + " and your email is " + user.getEmail() +". Post here your secret");
+       modelAndView.addObject("user",user.getName());
         modelAndView.addObject("adminMessage","Only the members can be here");
         modelAndView.setViewName("member/home");
         return modelAndView;
     }
+   @RequestMapping(value="/enjoyChat",method=RequestMethod.POST)
+    public String connectToChat(HttpServletRequest req){
+       Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+       User user =userService.findUserByUserName(auth.getName());
+       req.getSession().setAttribute("user", user.getName());
+       return "chat";
+   }
 }
